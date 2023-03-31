@@ -347,6 +347,11 @@ int pthread_join(pthread_t thread, void** retval);
 /*异常终止线程*/
 include <pthread.h>
 int pthread_cancel(pthread_t thread);
+/*分离线程
+当detached线程终止时，它的资源直接由系统回收，而不是由其他线程调用join
+成功返回0，失败返回errno*/
+#include <pthread.h>
+int pthread_detach(pthread_t thread);
 ```
 
 ```c
@@ -380,8 +385,9 @@ int pthread_cond_destroy(pthread_cond_t *cond);
 int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);
 //等待条件变量的同时可以设置等待超时
 int pthread_cond_timedwait(pthread_cond_t *cond, pthread_mutex_t *mutex, const struct timespec *abtime);
-//激活条件变量
+//唤醒被阻塞在指定条件的一个线程，唤醒顺序由调度策略决定
 int pthread_cond_signal(pthread_cond_t *cond);
+//唤醒阻塞在cond条件上的所有线程
 int pthread_cond_broadcast(pthread_cond_t *cond);
 ```
 
