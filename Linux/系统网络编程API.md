@@ -184,7 +184,8 @@ tee函数在两个管道文件描述符之间复制数据，也是零拷贝操�
 #include<fcntl.h>
 ssize_t tee(int fd_in, int fd_out, size_t len, unsigned int flags);
 /*fcntl
-对文件描述符进行各种控制操作，是POSIX规范的首选方法，细节见Linux高性能服务器编程112页*/
+对文件描述符进行各种控制操作，是POSIX规范的首选方法，细节见Linux高性能服务器编程112页
+当cmd为F_GETFL时没有第三个参数*/
 #include <fcnt1.h>
 int fcntl (int fd, int cmd, …) ;
 ```

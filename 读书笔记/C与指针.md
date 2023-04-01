@@ -18,4 +18,26 @@ func(int i) {//默认返回int
 
 # 操作符和表达式
 
-在C语言中避免混用整型值和布尔值。
+在C语言中避免混用整型值和布尔值。若一个变量用于表示布尔值，不要通过把它与任何特定的值进行比较来测试这个变量是否为真值，哪怕是与`TRUE`或`FALSE`。
+
+两个指针做减法（两个指针指向同一个数组中的元素），结果是一个`ptrdiff_t`类型的有符号整型，结果是两个指针指向内存的距离。大小于对于同一个数组的两个指针可能会得到前后关系，具体看编译器实现，标准并未定义。
+
+# 函数
+
+```c
+//可变参数
+#include <stdarg.h>
+float average(int nums, ...) {
+    va_list var_arg;//va_list类型的变量用来处理可变参
+    int count = 0;
+    float sum = 0;
+    va_start(var_arg, nums);//将var_arg设置为第一个可变参，第一个参数是va_list类型变量，第二个变量是最后一个有名参数，
+    for (;count < nums; nums++) {
+        sum += va_arg(var_arg, int);//将var_list作为int类型使用
+    }
+    va_end(var_arg);//完成处理可变参数
+    return sum / nums;
+}
+
+```
+
