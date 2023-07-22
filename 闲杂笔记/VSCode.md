@@ -3,3 +3,5 @@
 折叠：ctrl+k,ctrl+0
 
 展开：ctrl+k, ctrl+j
+
+调整字体：ctrl + ‘+’/‘-’

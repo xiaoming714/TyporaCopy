@@ -11,6 +11,7 @@ GDB（GNU Debugger）是UNIX及UNIX-like下的强大调试工具，可以调试A
 gdb helloWorld
 $ gdb gdbStep    #启动调试
 (gdb)#输入run命令即可运行程序
+
 #有参程序启动调试
 gdb hello
 (gdb)run 参数#程序启动
@@ -18,10 +19,12 @@ gdb hello
 gdb hello
 (gdb) set args 编程珠玑
 (gdb) run
+
 #查看是否会产生core文件
 ulimit -c#如果是0则表示不产生core文件
 ulimit -c unlimied  #表示不限制core文件大小
 ulimit -c 10        #设置最大大小，单位为块，一块默认为512字节
+
 #调试已经运行的程序
 ps -ef|grep 进程名#得到进程id
 gdb

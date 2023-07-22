@@ -46,9 +46,10 @@ sig参数指出要捕获的信号类型，_handler是一个函数指针，用来
 成功返回前一次调用signal时传入的函数指针，或者是sig的默认处理函数指针（SIG_DEF,如果是第一次调用的话）
 出错返回SIG_ERR，并设置errno
 该函数由ANSI定义，由于历史原因在不同版本的 Unix和不同版本的 Linux中可能有不同的行为。因此应该尽量避免使用它
+void (*signal(int sig, void(*func)(int)))(int);这是它真正的原型
 */
 #include <signal.h>
-_sighandler_t signal)(int sig, _sighandler_t _handler);
+_sighandler_t signal (int sig, _sighandler_t _handler);
 /*POSIX信号捕捉
 成功：0；失败：-1，设置errno
 act：传入参数，新的处理方式；oldact：传出参数，旧的处理方式

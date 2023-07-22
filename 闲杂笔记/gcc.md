@@ -14,6 +14,8 @@ gcc -E hello.c | more
 gcc -o hello.exe hello.c (哦,windows用习惯了) 
 #-pipe使用管道代替编译中的临时文件，在使用非gnu汇编工具的时候，可能有些问题
 gcc -pipe -o hello.exe hello.c 
+# -g生成调试信息
+#-w 不生成任何警告信息。
 #-ansi关闭 gnu c中与 ansi c 不兼容的特性, 激活 ansi c 的专有特性（包括禁止一些 asm inline typeof 关键字, 以及 UNIX,vax 等预处理宏）。
 #-fno-asm此选项实现 ansi 选项的功能的一部分，它禁止将 asm, inline 和 typeof 用作关键字。
 #-fno-strict-prototype只对 g++ 起作用, 使用这个选项, g++ 将对不带参数的函数,都认为是没有显式的对参数的个数和类型说明,而不是没有参数。而 gcc 无论是否使用这个参数, 都将对没有带参数的函数, 认为城没有显式说明的类型。
