@@ -79,3 +79,85 @@ git stash pop #恢复缓存内容并删除
 
 ```
 
+
+
+# 正常的git工作流
+
+```bash
+# 首先需要对本地仓库进行初始化
+git init
+
+# 如果有远程仓库，去远程仓库找到将本地仓库和远程仓库关联起来的方法
+
+# 如果已经和远端仓库建立关联，使用以下指令切换到最新版本
+git checkout master
+git pull --rebase origin master
+
+# 版本最新之后通常需要创建自己的分支，在自己的分支上对代码进行修改
+git branch -b test/feature_xxx
+
+# coding......
+
+# 查看当前仓库的状态
+git status 
+
+# 查看仓库的本地和远端日志
+git log
+
+# 查看文件的差异
+git diff
+
+# 将修改的文件添加到暂存区，.的意思是将当前目录所有修改添加到暂存区，也可以指定文件进行提交
+git add .
+
+# 提交到本地git仓库，-m的意思是添加commit信息，如果不写信息可能会报错
+git commit -m "my first commit message"
+
+# 将本地仓库的最新版本推送到远端，通常也是推送到自己的分支
+# 这时git会返回一个链接，进入这个链接即可查看自己的代码检查情况，如果检查通过，在链接中对代码进行合并
+git push origin test/feature_xxx
+```
+
+
+
+# 一些问题
+
+```bash
+# 删除已经提交的文件
+# 1.直接在本地删除文件再提交
+git rm <file> # 使用git rm命令，在删除文件的同时还会将这个删除操作记录下来
+git commit -m""
+
+# 2.只在暂存区中删除文件，本地工作区不做改变
+git rm  <file>
+
+# 3.如果误删了某个文件，使用以下指令恢复
+git checkout -- <file> # 如果没有-- 改命令就变成了切换到另一个分支
+
+# 回滚已经commit的代码
+git reset <commit号> # 回滚到某次提交
+git reset --sort # 这次提交之后的修改会退回暂存区
+git reset --hard # 这次提交之后的修改不做任何保留，使用git status也是看不到记录的
+git reset <file> # 回退文件，暂存区的也可以回退
+
+# 合并commit，合并多个相似功能的commit，保持历史的整洁
+git rebase -i HEAD~3 # 从HEAD版本开始数过去的三个版本
+git rebase -i [commitid] # 合并commitid到现在的多个版本，不包括commitid的版本
+
+# 清除还没有提交的修改
+git checkout .
+```
+交互式界面的指令
+
+![image-20230731135046226](photo/image-20230731135046226.png)
+
+```bash
+# 修改最近提交的commit信息
+git commit --amend --message="message" --author="author"
+
+# 修改历史提交的commit信息
+git rebase -i commitid或者对HEAD的偏移 # 列出commit列表
+
+# git grep 查找提交文件中的关键字
+```
+
